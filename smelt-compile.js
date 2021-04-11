@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
+Settings = require("./Configuration/Settings");
 StartCompiler = require("./Compiler/StartCompiler");
 FileParser = require("./Compiler/FileParser");
 CommandBlock = require("./Compiler/CommandBlock");
 CommandModule = require("./Compiler/CommandModule");
-CommandCreator = require("./Compiler/CommandCreator");
+CommandCreator = Settings.Current.Output.MinecraftVersion == "1.16"? require("./Compiler/CommandCreator_1_16") : require("./Compiler/CommandCreator");
 BangCommandHelper = require("./BangCommands/Helper");
 RconClient = require("./Compiler/RconClient");
-Settings = require("./Configuration/Settings");
 
 var util = require('util');
 var commander = require('commander');

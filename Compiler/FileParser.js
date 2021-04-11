@@ -155,9 +155,9 @@ var FileParser = (function ()
 		
 		var summonRebuildEntityCommand = util.format(
 				Templates.Current.SUMMON_REBUILD_ENTITY,
-				commandModule.lowX,
+				commandModule.lowX-0.1,
 				(commandModule.lowY - 1), // lower y by 1 because minecarts execute 1 block up
-				commandModule.lowZ
+				commandModule.lowZ-0.1
 			);
 
 		var clearAreacommand = util.format(
