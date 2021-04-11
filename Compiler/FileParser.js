@@ -107,6 +107,7 @@ var FileParser = (function ()
 		CommandCreator.reset(commandModule);
 
 		var content = this.removeComments(data.toString().trim());
+		content = this.applyIncludes(content)
 		var lines = content.split("\n");
 		var distanceOffset = 3;
 		
@@ -267,6 +268,36 @@ var FileParser = (function ()
 		return content.trim();
 	}
 		
+	FileParser.prototype.applyIncludes = function (content) {
+		var regex = new RegExp(/^include "([^"]*?)"\s*?$/, "gm");
+		var alreadyIncluded = [];
+		
+		while(content.match(regex)) {
+			content = content.replace(regex, function(match, fname, offset) {
+				if (alreadyIncluded.indexOf(fname) != -1) {
+					return "";
+				}
+				
+				alreadyIncluded.push(fname);
+				
+				if (!fname.endsWith(".mcc")) {
+					fname += ".mcc";
+				}
+				var filePath = path.resolve(fname);		
+				var incContent = fs.readFileSync(filePath).toString().trim();
+				return incContent
+			});;
+		}
+		
+		if(Settings.Current.Output.ShowDebugInfo) {
+			console.log(chalk.bold("\n\n* APPLYING INCLUDES!"));
+			console.log(chalk.bold("\n\n  RESULT:"));
+			console.log(content);
+		}
+		
+		return content.trim();
+	}
+	
 	FileParser.prototype.processLine = function (commandModule, line , endoffile)
 	{
 		if(line[0] == "#" || line[0] == ">" || line[0] == "/" || line[0] == "!" || line[0] == "$" || endoffile == true) 
