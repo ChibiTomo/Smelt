@@ -106,8 +106,8 @@ var FileParser = (function ()
 		// Pass module to CommandCreator to start new vars
 		CommandCreator.reset(commandModule);
 
-		var content = this.removeComments(data.toString().trim());
-		content = this.applyIncludes(content)
+		var content = this.applyIncludes(data)
+		content = this.removeComments(content.toString().trim());
 		var lines = content.split("\n");
 		var distanceOffset = 3;
 		
