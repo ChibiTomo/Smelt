@@ -58,7 +58,7 @@ var Templates =
 		CLEAR_AREA_FORMAT: "execute as @e[tag=oc_rebuild,distance=..1.1] at @s run fill ~%d ~%d ~%d ~%d ~%d ~%d air",
 		CLEAR_MARKERS_FORMAT: "execute as @e[tag=oc_rebuild,distance=..1.1] at @s run kill @e[tag=oc_marker,dx=%d,dy=%d,dz=%d]",
 		CLEAR_MODULE_DISPLAY_MARKER: "execute as @e[tag=oc_rebuild,distance=..1.1] at @s run kill @e[tag=oc_marker,dx=0,dy=2,dz=0]",
-		CLEAR_REBUILD_ENTITY: "execute as @e[tag=oc_rebuild,distance=..1.1] run kill",
+		CLEAR_REBUILD_ENTITY: "kill @e[tag=oc_rebuild,distance=..1.1]",
 		CLEAR_MINECARTS: "kill @e[type=command_block_minecart,distance=..1]",
 		COMMAND_BLOCK_MINECART_NBT_FORMAT: "{id:command_block_minecart,Command:%s}",
 		SUMMON_FALLING_RAIL_FORMAT: "summon minecraft:falling_block ~ ~5 ~ {BlockState:{Name:\"minecraft:activator_rail\"},Time:1,Passengers:[%s]}"

@@ -156,9 +156,9 @@ var FileParser = (function ()
 		
 		var summonRebuildEntityCommand = util.format(
 				Templates.Current.SUMMON_REBUILD_ENTITY,
-				commandModule.lowX-0.1,
+				commandModule.lowX+(commandModule.startX < commandModule.stopX? -0.1 : 0.1),
 				(commandModule.lowY - 1), // lower y by 1 because minecarts execute 1 block up
-				commandModule.lowZ-0.1
+				commandModule.lowZ+(commandModule.startZ < commandModule.stopZ? -0.1 : 0.1)
 			);
 
 		var clearAreacommand = util.format(
@@ -173,9 +173,9 @@ var FileParser = (function ()
 
 		var clearMarkersCommand = util.format(
 				Templates.Current.CLEAR_MARKERS_FORMAT,
-				commandModule.diffX,
+				commandModule.diffX+(commandModule.startX < commandModule.stopX? 0.1 : -0.1),
 				commandModule.diffY,
-				commandModule.diffZ
+				commandModule.diffZ+(commandModule.startZ < commandModule.stopZ? 0.1 : -0.1)
 			);
 
 		// Add commands to start of combined command
